@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles1.css') }}">
     <title>StudyHelp 24x7</title>
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-B31J01CXSV"></script>
 <script>
@@ -33,7 +33,7 @@
 		<script>
         function askDeepSeek() {
     let userQuery = document.getElementById("queryInput").value;
-    let url = `http://127.0.0.1:5001/ask_deepseek?query=${encodeURIComponent(userQuery)}`;
+    let url = `https://studyhelp-24x7.onrender.com/ask_deepseek?query=${encodeURIComponent(userQuery)}`;
 
     fetch(url)
         .then(response => {
