@@ -37,7 +37,7 @@ def ask_deepseek():
     }
 
     try:
-        response = requests.post(url, headers=headers, json=payload)
+        response = requests.post(url, headers=headers, json=payload, timeout=15)
         response_json = response.json()
 
         if response.status_code == 200:
