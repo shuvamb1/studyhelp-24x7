@@ -33,7 +33,7 @@
 		<script>
         function askDeepSeek() {
     let userQuery = document.getElementById("queryInput").value;
-    let url = `http://127.0.0.1:5001/ask_deepseek?query=${encodeURIComponent(userQuery)}`;
+    let url = `http://127.0.0.1:5000/ask_deepseek?query=${encodeURIComponent(userQuery)}`;
 
     fetch(url)
         .then(response => {
@@ -55,7 +55,7 @@
         });
 }
 document.getElementById('logo').addEventListener('click', function() {
-            window.location.href = 'index1.html';
+            window.location.href = 'templates/index1.html';
         });
     </script>
     </main>
