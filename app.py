@@ -40,11 +40,10 @@ def ask_deepseek():
           {
             "type": "text",
             "text": user_query;
-          },
           }
         ]
       }
-    ],
+    ]
     }
 
     try:
