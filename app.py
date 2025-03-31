@@ -26,13 +26,13 @@ def ask_deepseek():
         return jsonify({"error": "Query parameter is required"}), 400
 
     # Choose the correct API endpoint (DeepSeek OR OpenRouter)
-    url = "https://api.deepseek.com/v1/chat/completions"  # ✅ Correct DeepSeek API endpoint
+    url = "https://openrouter.ai/api/v1/chat/completions"  # ✅ Correct DeepSeek API endpoint
     headers = {
         "Authorization": f"Bearer {DEEPSEEK_API_KEY}",
         "Content-Type": "application/json"
     }
     payload = {
-        "model": "deepseek-chat",  # ✅ Use the correct model name (deepseek-chat)
+        "model": "deepseek/deepseek-chat-v3-0324:free",  # ✅ Use the correct model name (deepseek-chat)
         "messages": [{"role": "user", "content": user_query}]
     }
 
