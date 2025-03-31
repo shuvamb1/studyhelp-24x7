@@ -17,7 +17,7 @@ def home():
 
 @app.route("/ask_deepseek", methods=["GET"])
 def ask_deepseek():
-    user_query = request.args.get("query")
+     user_query = request.args.get("query", "").strip()
 
     if not DEEPSEEK_API_KEY:
         return jsonify({"error": "Missing API Key"}), 401
@@ -26,6 +26,10 @@ def ask_deepseek():
         return jsonify({"error": "Query parameter is required"}), 400
 
     sanitized_query = " ".join(user_query.split())
+
+    unique_id = request.args.get("t", "")
+
+
     # Choose the correct API endpoint (DeepSeek OR OpenRouter)
     url = "https://openrouter.ai/api/v1/chat/completions"  # ✅ Correct DeepSeek API endpoint
     headers = {
