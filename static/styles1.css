@@ -6,7 +6,14 @@
     font-weight: normal;
     font-style: normal;
 }
-
+@font-face {
+    font-family: 'Lilita One';
+    src: url('/static/LilitaOne.woff2') format('woff2'),
+         url('/static/LilitaOne.woff') format('woff'),
+         url('/static/LilitaOne.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body {
     font-family: Gagalin-Regular;
