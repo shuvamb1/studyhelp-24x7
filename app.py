@@ -3,7 +3,7 @@ import requests
 from flask_cors import CORS
 import os
 
-app = Flask(__name__, template_folder="templates")  # Ensure 'templates' folder exists
+app = Flask(__name__, template_folder="templates", static_folder="static")  # Ensure 'templates' folder exists
 CORS(app)
 
 DEEPSEEK_API_KEY = "my_api_key"
