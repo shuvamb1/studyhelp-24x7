@@ -25,6 +25,7 @@ def ask_deepseek():
     if not user_query:
         return jsonify({"error": "Query parameter is required"}), 400
 
+    sanitized_query = " ".join(user_query.split())
     # Choose the correct API endpoint (DeepSeek OR OpenRouter)
     url = "https://openrouter.ai/api/v1/chat/completions"  # ✅ Correct DeepSeek API endpoint
     headers = {
@@ -33,7 +34,7 @@ def ask_deepseek():
     }
     payload = {
         "model": "google/gemini-2.5-pro-exp-03-25:free",  # ✅ Use the correct model name (deepseek-chat)
-        "messages": [{"role": "user", "content": user_query}]
+        "messages": [{"role": "user", "content": sanitized_query}]
     }
 
     try:
