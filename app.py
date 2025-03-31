@@ -39,7 +39,7 @@ def ask_deepseek():
         "content": [
           {
             "type": "text",
-            "text": user_query;
+            "text": user_query
           }
         ]
       }
