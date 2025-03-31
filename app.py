@@ -33,11 +33,11 @@ def ask_deepseek():
     }
     payload = {
         "model": "google/gemini-2.5-pro-exp-03-25:free",  # ✅ Use the correct model name (deepseek-chat)
-        "messages": [{"role": "user","content": user_query}]
+        "messages": [{"role": "user", "content": user_query}]
     }
 
     try:
-        response = requests.post(url, headers=headers, json=payload, timeout=15)
+        response = requests.post(url, headers=headers, json=payload)
         response.raise_for_status()
         response_json = response.json()
 
