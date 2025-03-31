@@ -32,7 +32,7 @@ def ask_deepseek():
         "Content-Type": "application/json"
     }
     payload = {
-        "model": "deepseek/deepseek-chat-v3-0324:free",  # ✅ Use the correct model name (deepseek-chat)
+        "model": "deepseek/deepseek-v3-base:free",  # ✅ Use the correct model name (deepseek-chat)
         "messages": [{"role": "user", "content": user_query}]
     }
 
