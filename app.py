@@ -1,11 +1,16 @@
+from flask import Flask, request, jsonify, render_template
 import requests
-from flask import Flask, request, jsonify
 from flask_cors import CORS
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")  # Ensure 'templates' folder exists
 CORS(app)
 
-DEEPSEEK_API_KEY = "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"
+DEEPSEEK_API_KEY = "my_api_key"
+
+@app.route("/")
+def home():
+    return render_template("pg11.html")  # Ensure 'pg11.html' is inside the 'templates' folder
 
 @app.route("/ask_deepseek", methods=["GET"])
 def ask_deepseek():
@@ -35,6 +40,5 @@ def ask_deepseek():
         return jsonify({"error": "Failed to parse JSON response", "details": str(e)}), 500
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 10000))  # Render assigns a dynamic port
-    app.run(debug=True, host="0.0.0.0", port=port)
-
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=False, host="0.0.0.0", port=port)
