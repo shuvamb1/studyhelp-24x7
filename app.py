@@ -33,17 +33,7 @@ def ask_deepseek():
     }
     payload = {
         "model": "google/gemini-2.5-pro-exp-03-25:free",  # ✅ Use the correct model name (deepseek-chat)
-        "messages": [
-      {
-        "role": "user",
-        "content": [
-          {
-            "type": "text",
-            "text": user_query
-          }
-        ]
-      }
-    ]
+        "messages": [{"role": "user","content": user_query}]
     }
 
     try:
