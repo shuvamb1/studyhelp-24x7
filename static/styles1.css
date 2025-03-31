@@ -1,11 +1,12 @@
 @font-face {
     font-family: 'Gagalin';
-    src: url('{{ url_for("static", filename="Gagalin-Regular.woff2") }}') format('woff2'),
-         url('{{ url_for("static", filename="Gagalin-Regular.woff") }}') format('woff'),
-         url('{{ url_for("static", filename="Gagalin-Regular.ttf") }}') format('truetype');
+    src: url('/static/Gagalin-Regular.woff2') format('woff2'),
+         url('/static/Gagalin-Regular.woff') format('woff'),
+         url('/static/Gagalin-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
 
 body {
     font-family: Gagalin-Regular;
