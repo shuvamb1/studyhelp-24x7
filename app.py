@@ -6,7 +6,7 @@ import os
 app = Flask(__name__, template_folder="templates", static_folder="static")  # Ensure 'templates' folder exists
 CORS(app)
 
-DEEPSEEK_API_KEY = "my_api_key"
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
 
 @app.route("/")
 def home():
