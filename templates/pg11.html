@@ -31,7 +31,6 @@
  		</div>
          
  		<script>
-			document.addEventListener("DOMContentLoaded", 
          function askDeepSeek() {
      let userQuery = document.getElementById("queryInput").value.trim();
 	if (!userQuery) {
@@ -60,7 +59,7 @@
              console.error("Error:", error);
              document.getElementById("response").innerText = "Error fetching response!";
          });
- });
+ }
  document.getElementById('logo').addEventListener('click', function() {
              window.location.href = 'https://shuvamb1.github.io/StudyHelp-24X7-/index1.html';
          });
