@@ -17,7 +17,7 @@ def home():
 
 @app.route("/ask_deepseek", methods=["GET"])
 def ask_deepseek():
-     user_query = request.args.get("query", "").strip()
+    user_query = request.args.get("query", "").strip()
 
     if not DEEPSEEK_API_KEY:
         return jsonify({"error": "Missing API Key"}), 401
