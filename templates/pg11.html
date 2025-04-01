@@ -33,7 +33,7 @@
  		<script>
 			document.addEventListener("DOMContentLoaded", 
          function askDeepSeek() {
-     let userQuery = document.getElementById("query-input").value.trim();
+     let userQuery = document.getElementById("queryInput").value.trim();
 	if (!userQuery) {
           	alert("Please enter a valid query!");
           	return;
@@ -50,10 +50,10 @@
          .then(data => {
              if (data.choices) {
                  document.getElementById("response").innerText = data.choices[0].message.content;
-		document.getElementById("query-input").value = "";
+		document.getElementById("queryInput").value = "";
              } else {
                  document.getElementById("response").innerText = "Error: Invalid response format!";
-		document.getElementById("query-input").value = "";
+		document.getElementById("queryInput").value = "";
              }
          })
          .catch(error => {
