@@ -13,7 +13,7 @@ if not DEEPSEEK_API_KEY:
 
 @app.route("/")
 def home():
-    return render_template("pg11.html")  # Ensure 'pg11.html' exists in 'templates' folder
+    return render_template("index.html")  # Ensure 'pg11.html' exists in 'templates' folder
 
 @app.route("/ask_deepseek", methods=["GET"])
 def ask_deepseek():
