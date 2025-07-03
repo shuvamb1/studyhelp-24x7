@@ -4,14 +4,15 @@
 }
 body {
     font-family: Gagalin-Regular;
-    background-color: #e4e4ed;
+    background-color: #0d214e;
+	margin: 0px;
 }
 header {
     display: flex;
     justify-content: space-between;
     padding: 20px;
-    background-color: #e4e4ed;
-    color: #5BC0DE;
+	background-color: #0d214e;
+    color: white;
 }
 button {
     background-color: #5BC0DE;
