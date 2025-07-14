@@ -81,9 +81,8 @@ input, select {
   font-size: 1.1em;
 }
 
-.success {
-  color: green;
-  font-size: 0.9em;
+#response {
+  color: white;
 }
 
 @media (max-width: 426px) {
