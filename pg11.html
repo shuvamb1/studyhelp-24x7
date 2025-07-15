@@ -1,63 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>StudyHelp 24x7</title>
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-B31J01CXSV"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles.css" />
+  <title>StudyHelp 24x7</title>
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-B31J01CXSV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-B31J01CXSV');
+  </script>
 
-  gtag('config', 'G-B31J01CXSV');
-</script>
+  <style>
+    /* Spinner Style */
+    #spinner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #0d214e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .dot-loader {
+      font-size: 2rem;
+      color: white;
+    }
+
+    .dot-loader span {
+      opacity: 0;
+      animation: fadeDot 1s infinite;
+    }
+
+    .dot-loader span:nth-child(2) { animation-delay: 0.3s; }
+    .dot-loader span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes fadeDot {
+      0%   { opacity: 0; }
+      50%  { opacity: 1; }
+      100% { opacity: 0; }
+    }
+  </style>
 </head>
-<body style="background-color: #0d214e;">
-    <header style="font-family:Gagalin">
-        <div id="logo" style="font-family:Gagalin;color:white">🌐 STUDYHELP 24X7</div>
-        <div class="auth-buttons" style="font-family:Gagalin">
-		&nbsp;&nbsp;&nbsp;
-            <button id="login" style="font-family:Gagalin;color:white">SIGN IN</button>&nbsp;&nbsp;&nbsp;
-            <button id="sign" style="font-family:Gagalin;color:white">SIGN UP</button>
-        </div>
-    </header>
-    <main style="font-family:Gagalin">
-		<div style="height:91%;width:91%;padding:3%">
-            <input type="text" id="queryInput" placeholder="Ask StudyHelp Bot" style="color:white;font-family:Lilita One;font-size:20px;padding:8px;border-radius: 5px;">
-			<button onclick="askDeepSeek()" style="font-family:Gagalin;color:white;">Ask</button>
-			<p id="response"></p>
-		</div>
-        
-		<script>
-        function askDeepSeek() {
-    let userQuery = document.getElementById("queryInput").value;
-    let url = `http://127.0.0.1:5001/ask_deepseek?query=${encodeURIComponent(userQuery)}`;
 
-    fetch(url)
+<body style="background-color: #0d214e;">
+  <!-- ✅ Loading Spinner -->
+  <div id="spinner">
+    <div class="dot-loader">
+      Loading<span>.</span><span>.</span><span>.</span>
+    </div>
+  </div>
+
+  <header style="font-family:Gagalin">
+    <div id="logo" style="font-family:Gagalin;color:white">🌐 STUDYHELP 24X7</div>
+    <div class="auth-buttons" style="font-family:Gagalin">
+      &nbsp;&nbsp;&nbsp;
+      <button id="login" style="font-family:Gagalin;color:white">SIGN IN</button>&nbsp;&nbsp;&nbsp;
+      <button id="sign" style="font-family:Gagalin;color:white">SIGN UP</button>
+    </div>
+  </header>
+
+  <main style="font-family:Gagalin">
+    <div style="height:91%;width:91%;padding:3%">
+      <input type="text" id="queryInput" placeholder="Ask StudyHelp Bot"
+        style="color:white;font-family:Lilita One;font-size:20px;padding:8px;border-radius: 5px;" />
+      <button onclick="askDeepSeek()" style="font-family:Gagalin;color:white;">Ask</button>
+      <p id="response"></p>
+    </div>
+  </main>
+
+  <script>
+    // ✅ Hide spinner once content is loaded
+    window.addEventListener('load', () => {
+      const spinner = document.getElementById('spinner');
+      spinner.style.display = 'none';
+    });
+
+    function askDeepSeek() {
+      let userQuery = document.getElementById("queryInput").value;
+      let url = `http://127.0.0.1:5001/ask_deepseek?query=${encodeURIComponent(userQuery)}`;
+
+      fetch(url)
         .then(response => {
-            if (!response.ok) {
-                throw new Error("Network response was not OK");
-            }
-            return response.json(); // Parse JSON
+          if (!response.ok) {
+            throw new Error("Network response was not OK");
+          }
+          return response.json();
         })
         .then(data => {
-            if (data.choices) {
-                document.getElementById("response").innerText = data.choices[0].message.content;
-            } else {
-                document.getElementById("response").innerText = "Error: Invalid response format!";
-            }
+          if (data.choices) {
+            document.getElementById("response").innerText = data.choices[0].message.content;
+          } else {
+            document.getElementById("response").innerText = "Error: Invalid response format!";
+          }
         })
         .catch(error => {
-            console.error("Error:", error);
-            document.getElementById("response").innerText = "Error fetching response!";
+          console.error("Error:", error);
+          document.getElementById("response").innerText = "Error fetching response!";
         });
-}
-document.getElementById('logo').addEventListener('click', function() {
-            window.location.href = 'https://shuvamb1.github.io/StudyHelp-24X7-/index1.html';
-        });
-    </script>
-    </main>
+    }
+
+    document.getElementById('logo').addEventListener('click', function () {
+      window.location.href = 'https://shuvamb1.github.io/StudyHelp-24X7-/index1.html';
+    });
+  </script>
 </body>
 </html>
