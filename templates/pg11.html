@@ -13,14 +13,50 @@
  
    gtag('config', 'G-B31J01CXSV');
  </script>
+	 <style>
+    /* Spinner Style */
+    #spinner {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #0d214e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .dot-loader {
+      font-size: 2rem;
+      color: white;
+    }
+
+    .dot-loader span {
+      opacity: 0;
+      animation: fadeDot 1s infinite;
+    }
+
+    .dot-loader span:nth-child(2) { animation-delay: 0.3s; }
+    .dot-loader span:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes fadeDot {
+      0%   { opacity: 0; }
+      50%  { opacity: 1; }
+      100% { opacity: 0; }
+    }
+  </style>
  </head>
- <body bgcolor="#e4e4ed">
+ <body>
+	 <div id="spinner">
+    <div class="dot-loader">
+      Loading<span>.</span><span>.</span><span>.</span>
+    </div>
+  </div>
      <header style="font-family:Gagalin">
          <div id="logo">🌐 STUDYHELP 24X7</div>
          <div class="auth-buttons" style="font-family:Gagalin">
- 		&nbsp;&nbsp;&nbsp;
-             <button id="login" style="font-family:Gagalin;color:white">SIGN IN</button>&nbsp;&nbsp;&nbsp;
-             <button id="sign" style="font-family:Gagalin;color:white">SIGN UP</button>
          </div>
      </header>
      <main style="font-family:Gagalin">
@@ -31,6 +67,12 @@
  		</div>
          
  		<script>
+			 // ✅ Hide spinner once content is loaded
+    window.addEventListener('load', () => {
+      const spinner = document.getElementById('spinner');
+      spinner.style.display = 'none';
+    });
+
          function askDeepSeek() {
      let userQuery = document.getElementById("queryInput").value.trim();
 	if (!userQuery) {
@@ -63,12 +105,7 @@
  document.getElementById('logo').addEventListener('click', function() {
              window.location.href = 'https://shuvamb1.github.io/StudyHelp-24X7-/index1.html';
          });
-    document.getElementById('login').addEventListener('click', function() {
-            window.location.href = 'https://shuvamb1.github.io/StudyHelp-24X7-/login.html';
-        });
-		document.getElementById('sign').addEventListener('click', function() {
-            window.location.href = 'https://shuvamb1.github.io/StudyHelp-24X7-/Sign%20up.html';
-        });
+    
      </script>
      </main>
  </body>
