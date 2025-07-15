@@ -30,6 +30,10 @@ button {
 button:hover {
 	background-color: #4d91e8
 }
+.dot-loader {
+      font-family: Gagalin-Regular;
+      font-size: 1.3rem;
+    }
 
 main {
     display: block;
