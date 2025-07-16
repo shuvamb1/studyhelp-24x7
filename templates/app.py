@@ -1,38 +1,63 @@
+from flask import Flask, request, jsonify, render_template
 import requests
-from flask import Flask, request, jsonify
 from flask_cors import CORS
+import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates", static_folder="static")  
 CORS(app)
 
-DEEPSEEK_API_KEY = "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"
+# Ensure API key is loaded
+DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY")
+if not DEEPSEEK_API_KEY:
+    print("⚠️ Warning: DEEPSEEK_API_KEY is not set! Please configure it in Render.")
+
+@app.route("/")
+def home():
+    return render_template("pg11.html")  # Ensure 'pg11.html' exists in 'templates' folder
 
 @app.route("/ask_deepseek", methods=["GET"])
 def ask_deepseek():
-    user_query = request.args.get("query")
+    user_query = request.args.get("query", "").strip()
+
+    if not DEEPSEEK_API_KEY:
+        return jsonify({"error": "Missing API Key"}), 401
+    
     if not user_query:
         return jsonify({"error": "Query parameter is required"}), 400
 
-    url = "https://openrouter.ai/api/v1/chat/completions"
+    sanitized_query = " ".join(user_query.split())
+
+    unique_id = request.args.get("t", "")
+
+
+    # Choose the correct API endpoint (DeepSeek OR OpenRouter)
+    url = "https://openrouter.ai/api/v1/chat/completions"  # ✅ Correct DeepSeek API endpoint
     headers = {
-        "Authorization": f"Bearer {DEEPSEEK_API_KEY}",
+        "Authorization": "Bearer {DEEPSEEK_API_KEY}",
         "Content-Type": "application/json"
     }
     payload = {
-        "model": "deepseek/deepseek-chat-v3-0324:free",
-        "messages": [{"role": "user", "content": user_query}]
+        "model": "google/gemini-2.5-pro",  # ✅ Use the correct model name (deepseek-chat)
+        "messages": [{"role": "user", "content": sanitized_query}]
     }
 
-    response = requests.post(url, headers=headers, json=payload)
-
     try:
+        response = requests.post(url, headers=headers, json=payload)
+        response.raise_for_status()
         response_json = response.json()
+
         if response.status_code == 200:
             return jsonify(response_json)
+        elif response.status_code == 401:
+            return jsonify({"error": "Unauthorized - Invalid API Key"}), 401
         else:
             return jsonify({"error": "DeepSeek API Error", "details": response_json}), response.status_code
-    except Exception as e:
-        return jsonify({"error": "Failed to parse JSON response", "details": str(e)}), 500
+
+    except requests.exceptions.RequestException as e:
+        return jsonify({"error": "Failed to reach DeepSeek API", "details": str(e)}), 500
+    except ValueError:
+        return jsonify({"error": "Invalid JSON response from DeepSeek API"}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True, host="0.0.0.0", port=5001)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=False, host="0.0.0.0", port=port)
