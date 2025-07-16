@@ -2,6 +2,14 @@
     font-family: 'Gagalin';
     src: url(Gagalin-Regular.ttf),url(Gagalin-Regular.woff),url(Gagalin-Regular.woff2);
 }
+@font-face {
+	font-family: 'Fonte';
+  	src: url('Fonte.woff2'),url('Fonte.woff'),url('Fonte.ttf');
+}
+@font-face {
+	font-family: 'LilitaOne';
+  	src: url('LilitaOne.woff2'),url('LilitaOne.woff'),url('LilitaOne.ttf');
+}
 body {
     font-family: Gagalin-Regular;
 	background-color: #0d214e;
