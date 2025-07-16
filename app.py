@@ -33,7 +33,7 @@ def ask_deepseek():
     # Choose the correct API endpoint (DeepSeek OR OpenRouter)
     url = "https://openrouter.ai/api/v1/chat/completions"  # ✅ Correct DeepSeek API endpoint
     headers = {
-        "Authorization": "Bearer {DEEPSEEK_API_KEY}",
+        "Authorization": f"Bearer {DEEPSEEK_API_KEY}",
         "Content-Type": "application/json"
     }
     payload = {
