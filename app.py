@@ -33,11 +33,11 @@ def ask_deepseek():
     # Choose the correct API endpoint (DeepSeek OR OpenRouter)
     url = "https://openrouter.ai/api/v1/chat/completions"  # ✅ Correct DeepSeek API endpoint
     headers = {
-        "Authorization": f"Bearer {DEEPSEEK_API_KEY}",
+        "Authorization": "Bearer {DEEPSEEK_API_KEY}",
         "Content-Type": "application/json"
     }
     payload = {
-        "model": "google/gemini-2.5-pro-exp-03-25:free",  # ✅ Use the correct model name (deepseek-chat)
+        "model": "google/gemini-2.5-pro",  # ✅ Use the correct model name (deepseek-chat)
         "messages": [{"role": "user", "content": sanitized_query}]
     }
 
