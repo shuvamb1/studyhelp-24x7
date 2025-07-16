@@ -37,7 +37,7 @@ def ask_deepseek():
         "Content-Type": "application/json"
     }
     payload = {
-        "model": "google/gemini-2.5-pro",  # ✅ Use the correct model name (deepseek-chat)
+        "model": "tngtech/deepseek-r1t2-chimera:free",  # ✅ Use the correct model name (deepseek-chat)
         "messages": [{"role": "user", "content": sanitized_query}]
     }
 
