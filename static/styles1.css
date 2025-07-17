@@ -4,11 +4,11 @@
 }
 @font-face {
 	font-family: 'Fonte';
-  	src: url('FONTE.woff2'),url('FONTE.woff'),url('FONTE.ttf');
+  	src: url(FONTE.woff2),url(FONTE.woff),url(FONTE.ttf);
 }
 @font-face {
 	font-family: 'LilitaOne';
-  	src: url('LilitaOne.woff2'),url('LilitaOne.woff'),url('LilitaOne.ttf');
+  	src: url(LilitaOne.woff2),url(LilitaOne.woff),url(LilitaOne.ttf);
 }
 body {
     font-family: Gagalin-Regular;
