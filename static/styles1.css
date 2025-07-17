@@ -39,10 +39,12 @@ button:hover {
 	background-color: #4d91e8
 }
 .dot-loader {
-      font-family: Forte;
+      font-family: Fonte , Brush Script MT;
       font-size: 1.3rem;
     }
-
+#queryInput{
+	font-family: LilitaOne;
+}
 main {
     display: block;
     justify-content: space-around;
