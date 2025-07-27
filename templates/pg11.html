@@ -40,25 +40,34 @@
   animation: spin 1s linear infinite;
   margin-bottom: 20px;
 }
-
+#loadingMessage {
+	font-family:Gagalin;
+	color:white;
+}
 
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-    .dot-loader span {
-      opacity: 0;
-      animation: fadeDot 1s infinite;
-    }
+		 .dot {
+  opacity: 0;
+  animation: blink 1.5s infinite;
+}
 
-    .dot-loader span:nth-child(2) { animation-delay: 0.3s; }
-    .dot-loader span:nth-child(3) { animation-delay: 0.6s; }
+.dot:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.dot:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.dot:nth-child(4) {
+  animation-delay: 0.9s;
+}
 
-    @keyframes fadeDot {
-      0%   { opacity: 0; }
-      50%  { opacity: 1; }
-      100% { opacity: 0; }
-    }
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
   </style>
  </head>
  <body>
@@ -74,7 +83,7 @@
  		<div style="height:91%;width:91%;padding:3%">
              <input type="text" id="queryInput" placeholder="Ask StudyHelp Bot" style="font-size:20px;padding:8px;border-radius: 5px;">
  			<button onclick="askDeepSeek()" style="font-family:Gagalin;color:white;">Ask</button>
- 			<p id="response"></p>
+ 			<p id="response"><p id="loadingMessage">Please wait<span class="dot">.</span><span class="dot">.</span><span class="dot">.</span></p></p>
  		</div>
          
  		<script>
@@ -86,10 +95,14 @@
 
          function askDeepSeek() {
      let userQuery = document.getElementById("queryInput").value.trim();
+		 const loading = document.getElementById("loadingMessage");
+    const responseBox = document.getElementById("response");
 	if (!userQuery) {
           	alert("Please enter a valid query!");
           	return;
       }
+		 loading.style.display = "block";
+    responseBox.innerText = "";
      let url = `https://studyhelp-24x7.onrender.com/ask_deepseek?query=${encodeURIComponent(userQuery)}&t=${new Date().getTime()}`;
  
      fetch(url)
@@ -100,8 +113,9 @@
              return response.json(); // Parse JSON
          })
          .then(data => {
+		 loading.style.display = "none"; // Hide loading message
              if (data.choices) {
-                 document.getElementById("response").innerText = data.choices[0].message.content;
+                 responseBox.innerText = data.choices[0].message.content;
 		document.getElementById("queryInput").value = "";
              } else {
                  document.getElementById("response").innerText = "Error: Invalid response format!";
@@ -109,8 +123,9 @@
              }
          })
          .catch(error => {
+		 loading.style.display = "none"; // Hide loading message
              console.error("Error:", error);
-             document.getElementById("response").innerText = "Error fetching response!";
+             responseBox.innerText = "Error fetching response!";
          });
  }
  document.getElementById('logo').addEventListener('click', function() {
