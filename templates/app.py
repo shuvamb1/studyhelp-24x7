@@ -42,7 +42,7 @@ def ask_deepseek():
     }
 
     try:
-        response = requests.post(url, headers=headers, json=payload, timeout=120)
+        response = requests.post(url, headers=headers, json=payload)
         response.raise_for_status()
         response_json = response.json()
 
